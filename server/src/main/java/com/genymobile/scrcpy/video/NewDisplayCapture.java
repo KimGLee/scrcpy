@@ -42,6 +42,7 @@ public class NewDisplayCapture extends SurfaceCapture {
     private static final int VIRTUAL_DISPLAY_FLAG_TOUCH_FEEDBACK_DISABLED = 1 << 13;
     private static final int VIRTUAL_DISPLAY_FLAG_OWN_FOCUS = 1 << 14;
     private static final int VIRTUAL_DISPLAY_FLAG_DEVICE_DISPLAY_GROUP = 1 << 15;
+    private static final int VIRTUAL_DISPLAY_FLAG_STEAL_TOP_FOCUS_DISABLED = 1 << 16;
     private static final int VIRTUAL_DISPLAY_FLAG_ALLOWS_CONTENT_MODE_SWITCH = 1 << 17;
 
     private final VirtualDisplayListener vdListener;
@@ -238,6 +239,9 @@ public class NewDisplayCapture extends SurfaceCapture {
                 if (Build.VERSION.SDK_INT >= AndroidVersions.API_34_ANDROID_14) {
                     flags |= VIRTUAL_DISPLAY_FLAG_OWN_FOCUS
                             | VIRTUAL_DISPLAY_FLAG_DEVICE_DISPLAY_GROUP;
+                }
+                if (Build.VERSION.SDK_INT >= AndroidVersions.API_35_ANDROID_15) {
+                    flags |= VIRTUAL_DISPLAY_FLAG_STEAL_TOP_FOCUS_DISABLED;
                 }
             }
             VirtualDisplay vd = ServiceManager.getDisplayManager()
